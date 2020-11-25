@@ -18,7 +18,7 @@ public class ProyectoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoApplication.class, args);
 	}
-
+/*
 	@Bean
 	public CommandLineRunner app(TituloServicio tituloServicio, CursoServicio cursoServicio, AsignaturaServicio asignaturaServicio,
 			 HorarioServicio horarioServicio, ProfesorServicio profesorServicio, AlumnoServicio alumnoServicio,
@@ -40,7 +40,7 @@ public class ProyectoApplication {
 			}
 		};
 	}
-
+*/
 
 
 }
