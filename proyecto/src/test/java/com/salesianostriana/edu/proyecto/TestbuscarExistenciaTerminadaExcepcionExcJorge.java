@@ -31,6 +31,7 @@ public class TestbuscarExistenciaTerminadaExcepcionExcJorge {
     @Autowired
     ExcepcionRepository repository;
 
+    /*
     @BeforeAll
     static void cargarListado(){
         Titulo tit = new Titulo("titulo",true);
@@ -38,7 +39,7 @@ public class TestbuscarExistenciaTerminadaExcepcionExcJorge {
         Asignatura asig = new Asignatura("asignatura",curso,true);
 
     }
-
+    */
 
     @Test
     void comprobarVacio(){
