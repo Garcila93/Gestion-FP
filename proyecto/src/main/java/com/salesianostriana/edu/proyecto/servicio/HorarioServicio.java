@@ -271,9 +271,9 @@ public class HorarioServicio extends BaseService<Horario, Long, HorarioRepositor
             //Las asignaturas que no pasen los filtros, son las que el alumno tiene como matriculadas.
             for (Asignatura asig:
                     ordenarListaDeAsignaturas(curso)) {
-                if (excepcionServicio.buscarExistenciaTerminadaExcepcionConv(asig,al, "Convalidación").orElse(null)!=null){
+                if (excepcionServicio.buscarExistenciaTerminadaExcepcionConv(asig,al).orElse(null)!=null){
                     resultados.add("Convalidada");
-                }else if (excepcionServicio.buscarExistenciaTerminadaExcepcionExc(asig,al, "Exención").orElse(null)!=null){
+                }else if (excepcionServicio.buscarExistenciaTerminadaExcepcionExc(asig,al).orElse(null)!=null){
                     resultados.add("Exención");
                 }else if(al.getAsignaturas().contains(asig)){
                     resultados.add("Aprob. del curso anterior");

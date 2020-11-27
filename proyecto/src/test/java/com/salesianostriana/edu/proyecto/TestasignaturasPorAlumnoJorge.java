@@ -80,6 +80,7 @@ public class TestasignaturasPorAlumnoJorge {
         excepc = Optional.of(new Excepcion());
         pk = new ExcepcionPK(a.getId(), asig1.getId());
         excepc.get().setAlumno(a);
+        excepc.get().setAsignatura(asig1);
         excepc.get().setId(pk);
         excepc.get().setEstado("Aceptado");
 
@@ -108,6 +109,7 @@ public class TestasignaturasPorAlumnoJorge {
         pk = new ExcepcionPK(a.getId(), asig1.getId());
         excepc.get().setAlumno(a);
         excepc.get().setId(pk);
+        excepc.get().setAsignatura(asig1);
         excepc.get().setEstado("Aceptado");
 
         Mockito.when(servicio.buscarExistenciaTerminadaExcepcion(asig1,a)).thenReturn(excepc);
@@ -124,12 +126,14 @@ public class TestasignaturasPorAlumnoJorge {
         pk2 = new ExcepcionPK(a.getId(), asig4.getId());
         excepc2.get().setAlumno(a);
         excepc2.get().setId(pk2);
+        excepc2.get().setAsignatura(asig4);
         excepc2.get().setEstado("Aceptado");
 
         excepc = Optional.of(new Excepcion());
         pk = new ExcepcionPK(a.getId(), asig1.getId());
         excepc.get().setAlumno(a);
         excepc.get().setId(pk);
+        excepc.get().setAsignatura(asig1);
         excepc.get().setEstado("Aceptado");
 
         Mockito.when(servicio.buscarExistenciaTerminadaExcepcion(asig4,a)).thenReturn(excepc2);
@@ -150,12 +154,14 @@ public class TestasignaturasPorAlumnoJorge {
         pk2 = new ExcepcionPK(a.getId(), asig4.getId());
         excepc2.get().setAlumno(a);
         excepc2.get().setId(pk2);
+        excepc2.get().setAsignatura(asig4);
         excepc2.get().setEstado("Aceptado");
 
         excepc = Optional.of(new Excepcion());
         pk = new ExcepcionPK(a.getId(), asig1.getId());
         excepc.get().setAlumno(a);
         excepc.get().setId(pk);
+        excepc.get().setAsignatura(asig1);
         excepc.get().setEstado("Aceptado");
 
         Mockito.when(servicio.buscarExistenciaTerminadaExcepcion(asig4,a)).thenReturn(excepc2);
