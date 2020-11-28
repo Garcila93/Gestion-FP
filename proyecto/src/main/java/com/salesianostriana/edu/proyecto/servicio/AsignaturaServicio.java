@@ -35,11 +35,11 @@ public class AsignaturaServicio extends BaseService<Asignatura, Long, Asignatura
     public Asignatura findByNameCurs(String nombre, String curso){
 
         Asignatura asign = new Asignatura();
-        asign=null;
+        //asign=null;
 
         for (Asignatura t : this.findAll()){
-            if(t.getNombre().equals(nombre)){
-                if(t.getCurso().getNombre().equals(curso)){
+            if(t.getCurso().getNombre().equals(curso)){
+                if(t.getNombre().equals(nombre)){
                     asign = t;
                 }
             }

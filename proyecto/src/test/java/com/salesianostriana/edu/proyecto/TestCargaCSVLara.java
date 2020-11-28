@@ -32,6 +32,7 @@ public class TestCargaCSVLara {
     @InjectMocks
     public AsignaturaServicio asignaturaServicio= new AsignaturaServicio(repositorio,null,null);
 
+
     HorarioServicio servicio = new HorarioServicio(null, asignaturaServicio, null, null);
 
     static Titulo titulo;
@@ -77,22 +78,25 @@ public class TestCargaCSVLara {
     @DisplayName("CSV con 4 datos")
     public void CSV4(){
         h1=new Horario(1,1,asig1,true);
-        List<Asignatura> listaAsig =new ArrayList<Asignatura>();
+        List<Asignatura> listaAsig =new ArrayList<>();
         listaAsig.add(asig1);
 
-
-        Mockito.when(asignaturaServicio.findByNameCurs("dato","primero")).thenReturn(asig1);
         Mockito.when(asignaturaServicio.findAll()).thenReturn(listaAsig);
 
         List<Horario> lista=servicio.cargarListadoTest("src/main/resources/Horario4");
         Assertions.assertEquals(h1, lista.get(0));
     }
 
-   /* @Test
+   @Test
     @DisplayName("CSV con 5 datos")
     public void CSV5(){
-        //assertThrows(IndexOutOfBoundsException.class, () -> {
-            servicio.cargarListadoTest("src/main/resources/Horario5");
-        //});
-    }*/
+       h1=new Horario(1,1,asig1,true);
+       List<Asignatura> listaAsig =new ArrayList<>();
+       listaAsig.add(asig1);
+
+       Mockito.when(asignaturaServicio.findAll()).thenReturn(listaAsig);
+
+       List<Horario> lista=servicio.cargarListadoTest("src/main/resources/Horario5");
+       Assertions.assertEquals(h1, lista.get(0));
+    }
 }

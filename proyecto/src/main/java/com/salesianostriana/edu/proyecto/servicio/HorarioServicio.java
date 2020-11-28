@@ -293,9 +293,11 @@ public class HorarioServicio extends BaseService<Horario, Long, HorarioRepositor
     }
 
     public List<Horario> cargarListadoTest(String nombre) {
+
+
         List<Horario> result = new ArrayList<>();
 
-        String path = "classpath:"+nombre+".csv";
+        //String path = "classpath:"+nombre+".csv";
         try {
             File file = new File(nombre+".csv");
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -304,8 +306,8 @@ public class HorarioServicio extends BaseService<Horario, Long, HorarioRepositor
             while((line = reader.readLine()) != null) {
                 String [] values=line.split(";");
 
-                    Horario prof = new Horario(Integer.parseInt(values[2]), Integer.parseInt(values[3]),
-                            asignaturaServicio.findByNameCurs(values[0], values[1]), true);
+                    Horario prof = new Horario(Integer.parseInt(values[4]), Integer.parseInt(values[1]),
+                            asignaturaServicio.findByNameCurs(values[2], values[3]), true);
                     result.add(prof);
 
             }
