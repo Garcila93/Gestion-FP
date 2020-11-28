@@ -188,7 +188,7 @@ public class TestbuscarExistenciaTerminadaExcepcionExcJorge {
 
     @Test
     @DisplayName("Comprobar en multiples que no se encuentra la buscada por estado")
-    void comprobarVariasValid(){
+    void comprobarVariasNoAcep(){
         List<Excepcion> lista2 = new ArrayList();
         Titulo tit = new Titulo("titulo",true);
         Curso curso = new Curso("curso",1,tit, true);
