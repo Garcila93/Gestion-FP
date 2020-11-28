@@ -51,6 +51,4 @@ public class Asignatura {
         this.esAlta = esAlta;
     }
 
-
-
 }

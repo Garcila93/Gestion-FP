@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.InvalidParameterException;
@@ -295,7 +292,26 @@ public class HorarioServicio extends BaseService<Horario, Long, HorarioRepositor
         return listadoCompuesto;
     }
 
+    public List<Horario> cargarListadoTest(String nombre) {
+        List<Horario> result = new ArrayList<>();
 
+        String path = "classpath:"+nombre+".csv";
+        try {
+            File file = new File(nombre+".csv");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
 
+            while((line = reader.readLine()) != null) {
+                String [] values=line.split(";");
 
+                    Horario prof = new Horario(Integer.parseInt(values[2]), Integer.parseInt(values[3]),
+                            asignaturaServicio.findByNameCurs(values[0], values[1]), true);
+                    result.add(prof);
+
+            }
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }
