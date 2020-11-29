@@ -50,4 +50,131 @@ public class TestbuscarExistenciaTerminadaExcepcionLara {
         Assertions.assertEquals(excepc, lista1.get(0));
 
     }
+    @Test
+    @DisplayName("Comprobar sobre una lista vacia")
+    void comprobarListaVacia(){
+        List<Excepcion> lista1 = new ArrayList();
+        Titulo tit = new Titulo("titulo",true);
+        Curso curso = new Curso("curso",1,tit, true);
+        Asignatura asig1 = new Asignatura("asignatura",curso,true);
+        Alumno a1 = new Alumno("","","",curso);
+        curso.addAsignatura(asig1);
+        entityManager.persist(tit);
+        entityManager.persist(curso);
+        entityManager.persist(a1);
+        entityManager.persist(asig1);
+        lista1.add(excepcionRepository.buscarExistenciaTerminadaExcepcion(asig1,a1).orElse(null));
+        Assertions.assertEquals(null, lista1.get(0));
+    }
+
+    @Test
+    @DisplayName("Comprobar que obtenemos solo los aceptados")
+    void comprobarIndividualMult() {
+        List<Excepcion> lista1 = new ArrayList();
+        Titulo tit = new Titulo("titulo", true);
+        Curso curso = new Curso("curso", 1, tit, true);
+        Asignatura asig1 = new Asignatura("asignatura", curso, true);
+        Alumno a1 = new Alumno("", "", "", curso);
+        curso.addAsignatura(asig1);
+        entityManager.persist(tit);
+        entityManager.persist(curso);
+        entityManager.persist(a1);
+        entityManager.persist(asig1);
+        Excepcion excepc = new Excepcion();
+        ExcepcionPK pk = new ExcepcionPK(a1.getId(), asig1.getId());
+        excepc.setAlumno(a1);
+        excepc.setId(pk);
+        excepc.setAsignatura(asig1);
+        excepc.setEstado("Aceptado");
+        entityManager.persist(excepc);
+
+        Asignatura asig2 = new Asignatura("asignatura2", curso, true);
+        Excepcion excepc2 = new Excepcion();
+        ExcepcionPK pk2 = new ExcepcionPK(a1.getId(), asig2.getId());
+        curso.addAsignatura(asig2);
+        entityManager.persist(asig2);
+        excepc2.setAlumno(a1);
+        excepc2.setId(pk2);
+        excepc2.setAsignatura(asig2);
+        excepc2.setEstado("Rechazado");
+        entityManager.persist(excepc2);
+        lista1.add(excepcionRepository.buscarExistenciaTerminadaExcepcion(asig1, a1).orElse(null));
+        Assertions.assertEquals(excepc, lista1.get(0));
+    }
+
+    @Test
+    @DisplayName("Comprobamos que no se encuentra la buscada por asignatura")
+    void comprobarNoValidAsign(){
+        List<Excepcion> lista1 = new ArrayList();
+        Titulo tit = new Titulo("titulo",true);
+        Curso curso = new Curso("curso",1,tit, true);
+        Asignatura asig1 = new Asignatura("asignatura",curso,true);
+        Alumno a1 = new Alumno("","","",curso);
+        curso.addAsignatura(asig1);
+        entityManager.persist(tit);
+        entityManager.persist(curso);
+        entityManager.persist(a1);
+        entityManager.persist(asig1);
+        Excepcion excepc = new Excepcion();
+        ExcepcionPK pk = new ExcepcionPK(a1.getId(), asig1.getId());
+        excepc.setAlumno(a1);
+        excepc.setId(pk);
+        excepc.setAsignatura(asig1);
+        excepc.setEstado("Aceptado");
+        entityManager.persist(excepc);
+
+        Asignatura asig2 = new Asignatura("asignatura2",curso,true);
+        Excepcion excepc2 = new Excepcion();
+        ExcepcionPK pk2 = new ExcepcionPK(a1.getId(), asig2.getId());
+        curso.addAsignatura(asig2);
+        entityManager.persist(asig2);
+        excepc2.setAlumno(a1);
+        excepc2.setId(pk2);
+        excepc2.setAsignatura(asig2);
+        excepc2.setEstado("Aceptado");
+        entityManager.persist(excepc2);
+
+        Asignatura asig3 = new Asignatura("asignatura3",curso,true);
+        curso.addAsignatura(asig3);
+        entityManager.persist(asig3);
+
+        lista1.add(excepcionRepository.buscarExistenciaTerminadaExcepcion(asig3, a1).orElse(null));
+        Assertions.assertEquals(null, lista1.get(0));
+    }
+
+    @Test
+    @DisplayName("Comprobamos que no se encuentra la buscada por estado")
+    void comprobarVariasNoAcep(){
+        List<Excepcion> lista1 = new ArrayList();
+        Titulo tit = new Titulo("titulo",true);
+        Curso curso = new Curso("curso",1,tit, true);
+        Asignatura asig1 = new Asignatura("asignatura",curso,true);
+        Alumno a1 = new Alumno("","","",curso);
+        curso.addAsignatura(asig1);
+        entityManager.persist(tit);
+        entityManager.persist(curso);
+        entityManager.persist(a1);
+        entityManager.persist(asig1);
+        Excepcion excepc = new Excepcion();
+        ExcepcionPK pk = new ExcepcionPK(a1.getId(), asig1.getId());
+        excepc.setAlumno(a1);
+        excepc.setId(pk);
+        excepc.setAsignatura(asig1);
+        excepc.setEstado("Aceptado");
+        entityManager.persist(excepc);
+
+        Asignatura asig2 = new Asignatura("asignatura2",curso,true);
+        Excepcion excepc2 = new Excepcion();
+        ExcepcionPK pk2 = new ExcepcionPK(a1.getId(), asig2.getId());
+        curso.addAsignatura(asig2);
+        entityManager.persist(asig2);
+        excepc2.setAlumno(a1);
+        excepc2.setId(pk2);
+        excepc2.setAsignatura(asig2);
+        excepc2.setEstado("Pendiente");
+        entityManager.persist(excepc2);
+
+        lista1.add(excepcionRepository.buscarExistenciaTerminadaExcepcionExc(asig2, a1).orElse(null));
+        Assertions.assertEquals(null, lista1.get(0));
+    }
 }
