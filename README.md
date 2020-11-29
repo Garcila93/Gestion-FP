@@ -13,4 +13,4 @@ Lista de métodos y consultas testeados:
 | Adrián        |  UsuarioRepository         | UsuarioRepository en su totalidad                                                                    |
 | Jorge         |  HorarioSerivicio \- 196   | public List<Horario> ordenar \(List<Horario> lista\)                                                 |
 | Juan          | HorarioSercivio \- 99      | public boolean solapaHora\(Horario horario\)                                                         |
-| Juan          | HorarioServicio \- 240     |  public List<List<Horario>> ordenarFinal \(List<Horario> lista\)                                     |
+| Juan          | HorarioServicio \- 237     | public List<Horario> listaTramo\(List<Horario> lista, int dia\)                                      |
