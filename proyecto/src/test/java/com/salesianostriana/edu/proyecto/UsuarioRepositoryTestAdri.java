@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -21,6 +22,8 @@ public class UsuarioRepositoryTestAdri {
 
     @Autowired
     UsuarioRepository usuarioRepository;
+    @Autowired
+    private TestEntityManager entityManager;
 
     static Usuario a1;
 
@@ -38,6 +41,7 @@ public class UsuarioRepositoryTestAdri {
     @DisplayName("Probar guardar alumno")
     public void probarGuardaAlumno(){
         Usuario u1 = new Alumno("email", "nombre", "apellidos", null);
+        entityManager.persist(u1);
         assertNotEquals(Optional.empty() ,usuarioRepository.save(u1));
     }
 
