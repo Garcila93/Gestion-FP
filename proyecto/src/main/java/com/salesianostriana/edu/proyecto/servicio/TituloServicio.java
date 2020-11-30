@@ -26,7 +26,7 @@ public class TituloServicio extends BaseService<Titulo, Long, TituloRepository> 
     public Titulo findByName(String nombre){
 
         Titulo titulo = new Titulo();
-        titulo=null;
+        // titulo=null; Comentado por Juan
 
         for (Titulo t : this.findAll()){
             if(t.getNombre().equals(nombre)){
